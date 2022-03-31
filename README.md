@@ -1,2 +1,4 @@
 # proyectocoder
-proyecto hecho para un desafio de coder 
+proyecto intermediario
+
+Me faltaron varias cosas , me confie con el tiempo e hice lo que pude. Aprendi un monton en el curso.
