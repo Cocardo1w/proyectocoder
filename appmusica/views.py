@@ -14,3 +14,10 @@ def profesores(request):
 def cursos(request):
     return render(request, "appmusica/cursos.html")
 
+def formulario_curso(request):
+
+    datos = request.method
+    print(datos)
+
+    return render(request, 'appmusica/cursosFormulario.html')
+
