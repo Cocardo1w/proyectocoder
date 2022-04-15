@@ -1,0 +1,13 @@
+{% extends 'appmusica/base.html' %}
+    
+{% block main_content %}
+
+<div class="container mt-5 justify-content-center">
+    <h1 class="text-center"> Cargar/Actualizar Curso</h1>
+    <form method="post" class="text-center mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Cargar/Actualizar" class="btn btn-primary btn-lg mb-5">
+    </form>
+</div>
+{% endblock main_content %}

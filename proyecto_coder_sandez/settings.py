@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xusmq&=ijx48r01fs98br9+++*+almqa*v*u1u3qcj@*p(@zjh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

@@ -1,0 +1,33 @@
+
+{% extends 'appmusica/base.html' %}
+
+
+{% block main_content %}
+<h1 class="text-center mt-4">Cursos disponibles temporada 2022 - <span style="color: #2f311e; text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;">Escuela de musica</span></h1>
+
+<div class="container m-5">
+    <div class="card-columns">
+        {% for curso in object_list %}
+        <div class="card text-center p-3 m-3">
+            <div class="card-body">
+                <h5 class="card-title">{{curso.nombre}}</h5>
+                <a class="card-link" href="{%url 'curso_detail' curso.camada%}">Detalle</a> |
+                <a class="card-link" href="{%url 'curso_update' curso.camada%}">Actualizar</a> |
+                <a class="card-link" href="{%url 'curso_delete' curso.camada%}">Borrar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <a class="btn btn-primary btn-sm" href="{% url 'curso_create' %}">Agregar curso</a>
+</div>
+
+{% endblock main_content %}
+
+    <ul>
+        <p>
+            <a href="{% url 'curso_create'%}">Agregar Curso</a>
+        </p>
+    </ul>

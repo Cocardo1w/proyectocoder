@@ -1,15 +1,54 @@
-{%extends 'appmusica/base.html' %}
+{% extends 'appmusica/base.html' %}
 
-{%block main_content %}
+{% block main_content %}
 
-<h1>Vista de Cursos</h1>
+<div class="container mt-5">
+    {% if formulario.errors %}
+    <p style="color: red"> Hay problemas con los datos cargados</p>
+    {% endif %}
+        
 
-<ul>
-    <li>1. Curso de Guitarra</li>
-    <li>2. Curso de Bateria</li>
-    <li>3. Curso de Bajo</li>
-</ul>
+    <form action="/appmusica/cursos/" method="POST" class="form-group">
+        {% csrf_token %}
+        <table class="table">
+            {{formulario.as_table}}
+        </table>
+
+        <input type="submit" value="Cargar curso" class="btn btn-primary">
+    </form>
+
+</div>
 
 
+<div class="container mt-5">
+    <table class="table">
 
+        <thead>
+            <tr>
+                <th class="table-success">Nombre</th>
+                <th class="table-success">Camada</th>
+                <th class="table-success">Accion</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for curso in cursos %}
+                <tr>
+                <td>{{curso.nombre}}</td>
+                <td>{{curso.camada}}</td>
+                <td>
+                    <a href="{% url 'eliminarCurso' curso.camada %}">Borrar</a>
+                </td>
+                
+                </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+</div>
 {% endblock main_content %}
+ 
+
+
+
