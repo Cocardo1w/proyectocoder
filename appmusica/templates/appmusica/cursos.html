@@ -3,6 +3,9 @@
 {% block main_content %}
 
 <div class="container mt-5">
+
+    <h1 style="text-align: center">Cursos</h1>
+
     {% if formulario.errors %}
     <p style="color: red"> Hay problemas con los datos cargados</p>
     {% endif %}
@@ -14,13 +17,14 @@
             {{formulario.as_table}}
         </table>
 
-        <input type="submit" value="Cargar curso" class="btn btn-primary">
+        <input type="submit" value="Cargar curso" class="btn btn-warning">
     </form>
 
 </div>
 
 
 <div class="container mt-5">
+
     <table class="table">
 
         <thead>

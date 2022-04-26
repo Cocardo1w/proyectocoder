@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from appmusica.models import Curso, Profesor, Estudiante
-from appmusica.forms import CursoFormulario
+from appmusica.forms import CursoFormulario, UsuarioRegistroForm
 
 
 
@@ -14,9 +14,17 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+#Autenticacion django
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 def inicio(request):
-    return render(request, "appmusica/index.html")
+    dict_ctx = {"title": "Inicio", "page": "Inicio"}
+    return render(request, "appmusica/index.html", dict_ctx)
 # Create your views here.
+
 def cursos(request):
     print(request)
 
@@ -45,7 +53,8 @@ def profesores(request):
     profesores = Profesor.objects.all()
     return render(request, "appmusica/profesores.html", {"profesores": profesores})
 
-
+def about(request):
+    return render(request, 'appmusica/about.html')
 
 def formulario_curso(request):
 
@@ -111,7 +120,7 @@ def actualizar_curso(request, camada_id):
 
         return render(request, "appmusica/update_curso.html", {"formulario": formulario, "camada_id":camada_id})
 
-class CursoLista(ListView):
+class CursoLista(ListView, LoginRequiredMixin):
     model = Curso
     template_name = "appmusica/cursos_list.html"
 
@@ -136,3 +145,51 @@ class CursoBorrar(DeleteView):
     model = Curso
     success_url = "/appmusica/curso/list" 
     fields = ['nombre']
+
+def login_request(request):
+
+    if request.method == "POST":
+
+        formulario = AuthenticationForm(request, data=request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            nombre_usuario = data.get("username")
+            contrasenia = data.get("password")
+
+            usuario = authenticate(username=nombre_usuario, password=contrasenia)
+
+            if usuario is not None:
+                login(request, usuario)
+                
+                dict_ctx = {"title": "Inicio", "page": usuario }
+                return render(request, "appmusica/index.html", dict_ctx)
+            else:
+                dict_ctx = {"title": "Inicio", "page": usuario, "errors": ["El usuario no existe"] }
+                return render(request, "appmusica/index.html", dict_ctx)
+        else:
+            dict_ctx = {"title": "Inicio", "page": "anonymous", "errors": ["Revise los datos indicados en el form"] }
+            return render(request, "appmusica/index.html", dict_ctx)
+    else:
+        form = AuthenticationForm()
+        return render(request, "appmusica/login.html", {"form": form})
+
+def register_request(request):
+
+    if request.method =="POST":
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get("username")
+            form.save()
+
+            dict_ctx = {"title": "Inicio", "page":usuario}
+            return render(request, "appmusica/index.html", dict_ctx)
+        else:
+            dict_ctx = {"title": "Inicio", "page":"anonymous", "errors":["No paso las validaciones"] }
+            return render(request, "appmusica/index.html", dict_ctx)
+    else:
+        form = UsuarioRegistroForm()
+        return render(request, "appmusica/register.html", {"form":form})

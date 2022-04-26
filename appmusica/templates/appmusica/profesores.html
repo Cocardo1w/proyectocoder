@@ -2,14 +2,59 @@
 
 {%block main_content %}
 
-<h1>Vista de Profesores</h1>
+<div >
+    <div class="container mt-5">
+        <h1 style="text-align: center">Profesores</h1>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  David Guilmour
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <strong>Profesor de Guitarra.</strong> Es un músico, compositor y multiinstrumentista británico. Es conocido por haber sido vocalista, guitarrista y uno de los compositores de la banda de rock progresivo Pink Floyd.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    John Bonham
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                  <strong>Profesor de Batería.</strong> Fué el baterista del grupo de rock Led Zeppelin. Es considerado uno de los mejores baterías de rock de toda la historia, ya que cambió el enfoque que se tenía del instrumento.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    Jaco Pastorius
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                  <strong>Profesor de Bajo.</strong> Fué un bajista, compositor, arreglista y productor estadounidense de funk, jazz fusión y jazz. Miembro de Weather Report desde 1976 hasta 1981.
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>
+
+
+
+
+<!-- <h1>Vista de Profesores</h1>
 
 <ul>
     <li>1. David Gilmour (Profesor de Guitarra) es un músico, compositor y multiinstrumentista británico. Es conocido por haber sido vocalista, guitarrista y uno de los compositores de la banda de rock progresivo Pink Floyd.</li>
     <li>2. John Bonham (Profesor de Bateria) fue el baterista del grupo de rock Led Zeppelin. Es considerado uno de los mejores baterías de rock de toda la historia, ya que cambió el enfoque que se tenía del instrumento. </li>
     <li>3 Jaco Pastorius (Profesor de Bajo) fue un bajista, compositor, arreglista y productor estadounidense de funk, jazz fusión y jazz. Miembro de Weather Report desde 1976 hasta 1981. </li>
-</ul>
-
-
+</ul> -->
 
 {% endblock main_content %}

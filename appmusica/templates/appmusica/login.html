@@ -1,0 +1,18 @@
+{%extends 'appmusica/base.html' %}
+
+{%block main_content %}
+
+<body>
+    <div class="container mt-5">
+        <h3 style="text-align: center;">Ingrese sus credenciales para el inicio de sesión</h3>
+        <br><br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <br>
+        <button class="btn btn-warning" type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+</body>
+
+{% endblock main_content %}
