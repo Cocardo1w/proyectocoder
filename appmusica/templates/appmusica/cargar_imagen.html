@@ -1,0 +1,12 @@
+{% extends 'appmusica/base.html' %}
+
+{% block main_content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Cargar" class="btn btn-warning">
+
+</form>
+
+{% endblock main_content %}

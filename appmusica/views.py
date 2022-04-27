@@ -4,8 +4,8 @@ from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from appmusica.models import Curso, Profesor, Estudiante
-from appmusica.forms import CursoFormulario, UsuarioRegistroForm
+from appmusica.models import Curso, Profesor, Estudiante, Avatar
+from appmusica.forms import AvatarFormulario, CursoFormulario, UsuarioRegistroForm, UsuarioEditForm
 
 
 
@@ -21,7 +21,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 def inicio(request):
-    dict_ctx = {"title": "Inicio", "page": "Inicio"}
+    
+    avatar= Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+        imagen= avatar[0].imagen.url
+
+    dict_ctx = {"title": "Inicio", "page": "Inicio", "imagen_url": imagen}
     return render(request, "appmusica/index.html", dict_ctx)
 # Create your views here.
 
@@ -193,3 +199,59 @@ def register_request(request):
     else:
         form = UsuarioRegistroForm()
         return render(request, "appmusica/register.html", {"form":form})
+
+@login_required()
+def actualizar_usuario(request):
+
+    usuario= request.user
+
+    if request.method == "POST":
+        formulario = UsuarioEditForm(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            usuario.email = data["email"]
+            usuario.password1 = data["password1"]
+            usuario.password2 = data["password2"]
+            usuario.last_name = data["last_name"]
+            usuario.first_name = data["first_name"]
+
+            usuario.save()
+
+            return redirect("Inicio")
+        else:
+            formulario = UsuarioEditForm(initial={"email": usuario.email})
+            return render(request, "appmusica/editar_usuario.html", {"form": formulario, "errors": ["Datos invalidos"]})
+
+    else:
+        formulario = UsuarioEditForm(initial={"email": usuario.email})
+        return render(request, "appmusica/editar_usuario.html", {"form": formulario})
+
+@login_required()
+def cargar_imagen(request):
+
+    if request.method == "POST":
+
+        formulario = AvatarFormulario(request.POST,request.FILES)
+
+        if formulario.is_valid():
+
+            usuario = request.user
+
+            avatar = Avatar.objects.filter(user=usuario)
+
+            if len(avatar) > 0:
+                avatar = avatar[0]
+                avatar.imagen = formulario.cleaned_data["imagen"]
+                avatar.save()
+
+            else:
+                avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
+                avatar.save()
+            
+        return redirect("Inicio")
+    else:
+
+        formulario = AvatarFormulario()
+        return render(request, "appmusica/cargar_imagen.html", {"form": formulario})
