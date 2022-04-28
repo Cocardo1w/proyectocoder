@@ -7,8 +7,6 @@ from django.shortcuts import render, redirect
 from appmusica.models import Curso, Profesor, Estudiante, Avatar
 from appmusica.forms import AvatarFormulario, CursoFormulario, UsuarioRegistroForm, UsuarioEditForm
 
-
-
 #Vistas basadas en clases
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -255,3 +253,5 @@ def cargar_imagen(request):
 
         formulario = AvatarFormulario()
         return render(request, "appmusica/cargar_imagen.html", {"form": formulario})
+
+

@@ -25,6 +25,7 @@ urlpatterns = [
     path("curso/borrar/<pk>/", CursoBorrar.as_view(), name="curso_delete"),
     path("actualizar_usuario/", actualizar_usuario, name="EditarUsuario"),
     path("cargar_imagen/", cargar_imagen, name="CargarImagen"),
+    path("prueba/", prueba, name="prueba"),    
 
     path('about/', about, name="About")
 ]
