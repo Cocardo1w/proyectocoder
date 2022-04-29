@@ -19,12 +19,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 def inicio(request):
-    
-    avatar= Avatar.objects.filter(user=request.user)
 
-    if len(avatar) > 0:
-        imagen= avatar[0].imagen.url
+    if request.user.username:
+        avatar = Avatar.objects.filter(user=request.user)
 
+        if len(avatar) > 0:
+            imagen = avatar[0].imagen.url
+        else:
+            imagen = None
+    else:
+        imagen = None
     dict_ctx = {"title": "Inicio", "page": "Inicio", "imagen_url": imagen}
     return render(request, "appmusica/index.html", dict_ctx)
 # Create your views here.
@@ -59,6 +63,9 @@ def profesores(request):
 
 def about(request):
     return render(request, 'appmusica/about.html')
+
+def contacto(request):
+    return render(request, 'appmusica/contacto.html')
 
 def formulario_curso(request):
 
@@ -253,5 +260,8 @@ def cargar_imagen(request):
 
         formulario = AvatarFormulario()
         return render(request, "appmusica/cargar_imagen.html", {"form": formulario})
+
+
+
 
 
