@@ -9,7 +9,8 @@ urlpatterns = [
     path('login/', login_request, name="login"),
     path('register/', register_request, name="register"),
     path('logout/', LogoutView.as_view(template_name="appmusica/logout.html"), name="logout"),
-    
+
+    path('entrada/', entrada, name="Entradas"),    
     path('estudiantes/', estudiantes, name="Estudiantes"),
     path('profesores/', profesores, name="Profesores"),
     path('cursos/', cursos, name="Cursos"),

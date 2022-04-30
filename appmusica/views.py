@@ -1,10 +1,11 @@
+from cgitb import html
 from re import template
 from traceback import print_tb
 from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from appmusica.models import Curso, Profesor, Estudiante, Avatar
+from appmusica.models import Entrada, Curso, Profesor, Estudiante, Avatar
 from appmusica.forms import AvatarFormulario, CursoFormulario, UsuarioRegistroForm, UsuarioEditForm
 
 #Vistas basadas en clases
@@ -31,9 +32,21 @@ def inicio(request):
         imagen = None
     dict_ctx = {"title": "Inicio", "page": "Inicio", "imagen_url": imagen}
     return render(request, "appmusica/index.html", dict_ctx)
+
+""" def Blog(request):
+
+    articulos = Entrada.objects.all()        
+    return render(request, "appmusica/entrada.html", {"articulos": articulos}) """
+
+def entrada(request):
+
+    articulos = Entrada.objects.all()        
+    return render(request, "appmusica/entrada.html", {"articulos": articulos})
+    
 # Create your views here.
 
 def cursos(request):
+
     print(request)
 
     cursos = Curso.objects.all()
