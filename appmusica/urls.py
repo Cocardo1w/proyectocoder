@@ -26,6 +26,7 @@ urlpatterns = [
     path("actualizar_usuario/", actualizar_usuario, name="EditarUsuario"),
     path("cargar_imagen/", cargar_imagen, name="CargarImagen"),
     path("contacto/", contacto, name="Contacto"),   
-
-    path('about/', about, name="About")
+    path("sorteo/", Sorteo, name="sorteo"),
+      
+    path('about/', about, name="About"),
 ]

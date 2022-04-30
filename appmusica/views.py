@@ -64,6 +64,9 @@ def profesores(request):
 def about(request):
     return render(request, 'appmusica/about.html')
 
+def Sorteo(request):
+    return render(request, 'appmusica/Sorteo.html')
+
 def contacto(request):
     return render(request, 'appmusica/contacto.html')
 
