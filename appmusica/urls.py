@@ -15,7 +15,7 @@ urlpatterns = [
     path('profesores/', profesores, name="Profesores"),
     path('cursos/', cursos, name="Cursos"),
     path('cursoformulario/', formulario_curso, name='Formulario'),
-    path('buscarcurso/', buscarCurso, name='BusquedaCurso'),
+
     path('borrarcurso/<camada_id>', borrar_curso, name="eliminarCurso"),
     path('update_curso/<camada_id>/', actualizar_curso),
 

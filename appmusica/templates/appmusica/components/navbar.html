@@ -1,20 +1,21 @@
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
         <a class="navbar-brand" href="{% url 'Inicio' %}"">Inicio</a>
-        <a class="navbar-brand" href="{% url 'Entradas' %}">Blog</a>      
+        <a class="navbar-brand" href="{% url 'Entradas' %}">Blog!</a>      
         <a class="navbar-brand" href="{% url 'Estudiantes' %}">Estudiantes</a>
         <a class="navbar-brand" href="{% url 'Profesores' %}">Profesores</a> 
         <a class="navbar-brand" href="{% url 'Cursos' %}">Cursos</a> 
         <a class="navbar-brand" href="{% url 'About' %}">Acerca de mi</a>
 
         {% if not request.user.is_authenticated %}
-            <a class="navbar-brand btn btn-warning" href="{% url 'login' %}">Ingresar</a>        
+            <a class="navbar-brand btn btn-warning" href="{% url 'login' %}">Ingresar</a> 
+            <a class="navbar-brand btn btn-warning" href="{% url 'register' %}">Registrarse</a>           
         {% else %}
             <p> <strong>{{request.user.username}}</strong> </p>
         {% endif %}
 
 
-        <a class="navbar-brand btn btn-warning" href="{% url 'register' %}">Registrarse</a>     
+         
         <a class="navbar-brand btn btn-warning" href="{% url 'logout' %}">Salir</a>            
     </div>
 </nav>

@@ -33,17 +33,14 @@ def inicio(request):
     dict_ctx = {"title": "Inicio", "page": "Inicio", "imagen_url": imagen}
     return render(request, "appmusica/index.html", dict_ctx)
 
-""" def Blog(request):
 
-    articulos = Entrada.objects.all()        
-    return render(request, "appmusica/entrada.html", {"articulos": articulos}) """
+# Create your views here.
 
 def entrada(request):
 
     articulos = Entrada.objects.all()        
     return render(request, "appmusica/entrada.html", {"articulos": articulos})
     
-# Create your views here.
 
 def cursos(request):
 
@@ -99,19 +96,6 @@ def formulario_curso(request):
         curso_form = CursoFormulario()
         return render(request, 'appmusica/cursosFormulario.html',{"formulario":curso_form})
     
-
-def buscarCurso(request):
-
-    data = request.GET.get("camada")
-    print(data)
-    if data: 
-        curso = Curso.objects.filter(camada__icontains=data)
-        print(curso)
-
-        return render(request, 'appmusica/busquedaCurso.html', {"curso": curso[0], "id":data})
-
-    return render(request, 'appmusica/busquedaCurso.html')
-
 
 def borrar_curso(request, camada_id):
     try:
