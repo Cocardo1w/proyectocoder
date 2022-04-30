@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Bienvenidos</h1>
+    <section>
+        {% for elemento in articulos %}
+            <article>
+                <h3>{{ elemento.nombre }}</h3>
+                <p>
+                    {{elemento.contenido}}
+                    <img src="{{ elemento.imagen}}">
+                    <footer>
+                        Autor: {{ elemento.autor }}
+                        Fecha: {{elemento.fecha }}
+                    </footer>
+                </p>
+            </article>
+        {% endfor %}
+    </section>
+
+
+<p>
+    <a href="/appmusica/">Volver al inicio</a>
+</p>
+
+</body>
+</html>
+
+
+
