@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Blog</title>
 </head>
 <body>
     
@@ -23,9 +23,31 @@
         {% endfor %}
     </section>
 
+    <hr>
 
+    <h2 class="subtitle is-4">Comentarios</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p }}
+        <div class="control">
+            <button class="button is-success">Enviar Comentarios</button>
+
+        </div>
+    </form>
+
+    {% for Comentario in comentarios %}
+    <article class="media box">
+        <div class="media-content">
+            <strong>{{Comentario.nombre}}</strong> <small>{{Comentario.contenido}}</small> <br>
+                        
+
+        </div>
+    </article>
+    {% endfor %}
+    
 <p>
-    <a href="/appmusica/">Volver al inicio</a>
+    <a href='http://127.0.0.1:8000/'>Volver al inicio</a>
+    
 </p>
 
 </body>

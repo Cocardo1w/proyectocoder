@@ -16,6 +16,11 @@ class Entrada(models.Model):
         return self.nombre
 
 
+class Comentarios(models.Model):
+    
+    nombre = models.CharField(max_length=40)
+    contenido = models.TextField(max_length=800)    
+    
 
 class Curso(models.Model):
 

@@ -5,8 +5,8 @@ from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from appmusica.models import Entrada, Curso, Profesor, Estudiante, Avatar
-from appmusica.forms import AvatarFormulario, CursoFormulario, UsuarioRegistroForm, UsuarioEditForm
+from appmusica.models import Comentarios, Entrada, Curso, Profesor, Estudiante, Avatar
+from appmusica.forms import AvatarFormulario, CursoFormulario, UsuarioRegistroForm, UsuarioEditForm, Comentariosform
 
 #Vistas basadas en clases
 from django.views.generic import ListView
@@ -36,11 +36,27 @@ def inicio(request):
 
 # Create your views here.
 
+
+
 def entrada(request):
 
-    articulos = Entrada.objects.all()        
-    return render(request, "appmusica/entrada.html", {"articulos": articulos})
+    articulos = Entrada.objects.all()
+    comentarios = Comentarios.objects.all()
+         
+    if request.method == "POST":
+        form = Comentariosform(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            commentario = Comentarios(nombre = data['nombre'], contenido = data['contenido'])
+            commentario.save()
+
+    else:
+        form = Comentariosform()
     
+    return render(request, "appmusica/entrada.html", {"articulos": articulos, "form": form, "comentarios": comentarios})  
+
 
 def cursos(request):
 

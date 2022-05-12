@@ -56,7 +56,7 @@ ROOT_URLCONF = 'proyecto_coder_sandez.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [r"C:\Users\Cocardo\Desktop\proyecto_coder_sandez_final\proyectocoder\appmusica\templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

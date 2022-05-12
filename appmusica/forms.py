@@ -1,7 +1,10 @@
+from dataclasses import fields
 import email
+from urllib import request
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Comentarios, Entrada
 
 class CursoFormulario(forms.Form):
 
@@ -34,6 +37,13 @@ class UsuarioEditForm(UserCreationForm):
         fields = ['first_name','last_name','email', 'password1', 'password2']
         help_text = { k: "" for k in fields}
 
+class Comentariosform(forms.ModelForm):
+
+    class Meta:
+        model = Comentarios
+        fields = ('nombre','contenido')
+
+        
 class AvatarFormulario(forms.Form):
 
     imagen = forms.ImageField()

@@ -1,5 +1,5 @@
 from unicodedata import name
-from django import views
+from django import views 
 from django.urls import URLPattern, path
 from appmusica.views import *
 from django.contrib.auth.views import LogoutView
@@ -10,7 +10,7 @@ urlpatterns = [
     path('register/', register_request, name="register"),
     path('logout/', LogoutView.as_view(template_name="appmusica/logout.html"), name="logout"),
 
-    path('entrada/', entrada, name="Entradas"),    
+    path('entrada/', entrada, name="Entradas"), 
     path('estudiantes/', estudiantes, name="Estudiantes"),
     path('profesores/', profesores, name="Profesores"),
     path('cursos/', cursos, name="Cursos"),
